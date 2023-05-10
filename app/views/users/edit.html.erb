@@ -1,5 +1,18 @@
 <h2>Edit user info:</h2>
 
+<% if @user.errors.any? %>
+  <div id="error_explanation">
+    <h3><%= pluralize(@user.errors.count, "error") %>
+    prohibited these changes from being made:</h3>
+
+    <ul>
+    <% @user.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
 <%= form_with model: @user do |form| %>
   <%= form.label :username, "Username:" %>
   <%= form.text_field :username %>
